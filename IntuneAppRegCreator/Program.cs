@@ -89,24 +89,24 @@ namespace AzureADAppRegistrationTool
                 // Step 9: Summary
                 Console.WriteLine();
                 Console.WriteLine("=== Registration Summary ===");
+                Console.WriteLine($"Tenant ID: {authResult.TenantId}");
                 Console.WriteLine($"Application Name: {appDetails.Name}");
-                Console.WriteLine($"Application ID: {application.AppId}");
+                Console.WriteLine($"Application (Client) ID: {application.AppId}");
                 Console.WriteLine($"Object ID: {application.Id}");
                 Console.WriteLine($"Client Secret: {secret.SecretText}");
                 Console.WriteLine($"Secret Expiry: {secret.EndDateTime}");
-                Console.WriteLine($"Tenant ID: {authResult.TenantId}");
                 Console.WriteLine();
                 Console.WriteLine("⚠️  Remember to complete admin consent using the URL provided above!");
                 Console.WriteLine("✅ Application registration completed successfully!");
 
                 var summary = $@"
 === Registration Summary ===
+Tenant ID:        {authResult.TenantId}
 Application Name: {appDetails.Name}
 Application ID:   {application.AppId}
 Object ID:        {application.Id}
 Client Secret:    {secret.SecretText}
 Secret Expiry:    {secret.EndDateTime}
-Tenant ID:        {authResult.TenantId}
 
 ⚠️  Remember to complete admin consent using the URL provided above!
 ✅ Application registration completed successfully!
@@ -119,13 +119,13 @@ Tenant ID:        {authResult.TenantId}
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"❌ Failed to write summary to file: {ex.Message}");
+                    Console.WriteLine($"Failed to write summary to file: {ex.Message}");
                 }
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error: {ex.Message}");
+                Console.WriteLine($"Error: {ex.Message}");
                 if (ex.InnerException != null)
                 {
                     Console.WriteLine($"Details: {ex.InnerException.Message}");
